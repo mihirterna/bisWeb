@@ -7,9 +7,21 @@
 	<meta name="decription" content="Book In Short is our android project">
 	<meta name="author" content="mkdpro">
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
 	<script type="text/javascript" src = "./main.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-firestore.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117281209-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117281209-1');
+</script>
 </head>
-<body>
+<body onload="userLoad()">
 	<header>
 		<div class = "logo">
 			<h1>Book In Short</h1>
@@ -18,6 +30,7 @@
 			<div class="topnav" id="mnav">
 				<a href = "addBook.html">Add Book</a>
 				<a href = "viewBook.html">View Books</a>
+				<a href = "aboutUs.html">About Us</a>
 				<a href = "javascript:void(0);" class = "flr" onclick="signOut()">LOGOUT</a>
 				<a href = "javascript:void(0);" class = "icon" onclick = "fun()">&#9776;</a>
 			</div>
@@ -35,5 +48,6 @@
 			<p class = "content">Copyright &copy; 2017 mkdkpro</p>
 		</div>
 	</footer>
+
 </body>
 </html>

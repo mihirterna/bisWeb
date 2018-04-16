@@ -8,11 +8,19 @@
 	<meta name="author" content="mkdpro">
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
 	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-firestore.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-messaging.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
 	<script type="text/javascript" src = "./main.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-firestore.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117281209-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-117281209-1');
+</script>
+	</head>
 <body onload="addBookLoad()">
 	<header>
 		<div class = "logo">
@@ -22,6 +30,8 @@
 			<div class="topnav" id="mnav">
 				<a href = "addBook.html">Add Book</a>
 				<a href = "viewBook.html">View Books</a>
+                <a href = "aboutUs.html">About Us</a>
+				<a href = "javascript:void(0);" onclick = "retForm()">RESET</a>
 				<a href = "javascript:void(0);" class = "flr" onclick="signOut()">LOGOUT</a>
 				<a href = "javascript:void(0);" class = "icon" onclick = "fun()">&#9776;</a>
 			</div>
@@ -29,25 +39,33 @@
 	</header></br>
 	<section>
 		<div class="mainInfo" style="width: 70%; overflow: scroll;">
-			<form>
+			<form id = "morf">
 				<label for="lang">Choose Language</label>
-				<select id="lang" name = "lang">
-					<option value="english" selected>English</option>
-					<option value="marathi">Marathi</option>
+				<select name = "lang" id = "lang">
+					<option value="English" selected>English</option>
+					<option value="Marathi">Marathi</option>
 				</select>
-				<label  for="genre">Choose Genre</label>
-				<select id="genre" name = "genre">
-					<option value="scifi" selected>sci-fi</option>
-					<option value="novel">Novel</option>
-					<option value="poem">Poem</option>
+				<label for="genre">Choose Genre</label>
+				<select name = "genre" id = "genre">
+					<option value="Sci-fi" selected>Sci-fi</option>
+					<option value="Novel">Novel</option>
+					<option value="Poem">Poem</option>
 				</select>
-				<input id="name" type="text" name="bookName" placeholder="Enter book name"/>
-				<input id="author" type="text" name="authorName" placeholder="Enter author name"/>
-				<input id="describ"  type="text" name="decription" placeholder="Enter description"/>
-				<input  type="number" id = "tc" name="tabCount" placeholder="Enter tab count" onfocus="displayAlert()"/>
+				<label for="bookImage">Upload Image</label>
+				<input type="file" name="image" id = "bookImage" accept="image/*">
+				<input type="text" id = "bookName" name="bookName" placeholder="Enter book name"/>
+				<input type="text" id = "authorName" name="authorName" placeholder="Enter author name"/>
+				<input type="text" id = "decription" name="decription" placeholder="Enter description"/>
+				<input type="number" id = "tc" name="tabCount" placeholder="Enter tab count" onfocus="displayAlert()"/>
 				<a href="javascript:void(0);" onclick="addTabs()">Add tabs</a>
-				<div id = "mi"></div>
+				<div id = "mp"></div>
 			</form>
+		</div>
+		<div class="modalProgress" id = "pm">
+			<div class="modalContent"><div style="text-align: center;">
+				<p>Please wait while data is being uploaded!</p>
+				<div class="loader"></div></div>
+			</div>
 		</div>
 	</section></br></br>
 	<footer>
@@ -55,37 +73,6 @@
 			<p class = "content">Copyright &copy; 2017 mkdkpro</p>
 		</div>
 	</footer>
-	<script type="text/javascript">
-		var hasShownAlert = false;
-		function displayAlert(){
-			if(!hasShownAlert){
-				alert("This is gonna add entered number of textAreas here. Enter number neatlt.");
-				hasShownAlert = true;
-			}
-		}
-		function addTabs(){
-			var count = document.getElementById("tc").value;
-			var container = document.getElementById("mi");
-			 while (container.hasChildNodes()) {
-                container.removeChild(container.lastChild);
-            }
-            for(i=1;i<=count;i++){
-            	container.appendChild(document.createTextNode("tab "+(i+1)));
-            	var input = document.createElement("textarea");
-            	input.name = "tab"+i;
-				input.id="tab"+i;
-            	input.className = "tA";
-            	container.appendChild(input);
-            }
-			
-            var input = document.createElement("input");
-            input.type = "button";
-			input.value="Submit";
-            input.className = "button";
-			input.onclick=storeDataToFire;
-            container.appendChild(input);
-		}
-		
-	</script>
+
 </body>
 </html>
